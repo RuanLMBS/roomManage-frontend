@@ -1,0 +1,156 @@
+.banner {
+    background-image: url('../../assets/img/pcs.png');
+    /* Define a imagem de fundo do banner, que será exibida no topo da seção. */
+
+    height: 800px; 
+    /* Define a altura do banner. */
+
+    background-position: center top; 
+    /* Alinha a imagem de fundo ao centro horizontalmente e ao topo verticalmente. */
+
+    background-size: cover; 
+    /* Faz com que a imagem de fundo cubra completamente a área do banner. */
+}
+
+.content {
+    top: 18%; 
+    /* Define a posição vertical do conteúdo em 18% da altura do elemento pai. */
+
+    left: 20%; 
+    /* Define a posição horizontal do conteúdo em 20% da largura do elemento pai. */
+
+    position: absolute; 
+    /* Permite que o elemento seja posicionado de forma absoluta em relação ao seu pai. */
+}
+
+.content h1 {
+    color: white; 
+    /* Define a cor do texto do título como branco. */
+
+    font-size: 60px; 
+    /* Define o tamanho da fonte do título. */
+
+    font-weight: bold; 
+    /* Define a espessura da fonte como negrito. */
+}
+
+.content a {
+    text-decoration: none; 
+    /* Remove o sublinhado do link. */
+
+    background-color: white; 
+    /* Define a cor de fundo do botão como branco. */
+
+    color: blueviolet; 
+    /* Define a cor do texto do link. */
+
+    padding: 16px 20px; 
+    /* Define o espaço interno do botão. */
+
+    border-radius: 8px; 
+    /* Adiciona bordas arredondadas ao botão. */
+
+    font-weight: bold; 
+    /* Define a espessura da fonte como negrito. */
+}
+
+.content a:hover {
+    background-color: blueviolet; 
+    /* Altera a cor de fundo do botão ao passar o mouse. */
+
+    color: white; 
+    /* Altera a cor do texto do botão ao passar o mouse. */
+}
+
+.Box {
+    background-color: rgb(66, 60, 60); 
+    /* Define a cor de fundo da caixa como um tom escuro. */
+
+    padding: 20px 20px; 
+    /* Define o espaço interno da caixa. */
+
+    border-radius: 5px; 
+    /* Adiciona bordas arredondadas à caixa. */
+
+    text-align: center; 
+    /* Centraliza o texto dentro da caixa. */
+}
+
+.Box h1 {
+    font-size: 50px; 
+    /* Define o tamanho da fonte do título na caixa. */
+
+    font-weight: bold; 
+    /* Define a espessura da fonte como negrito. */
+
+    color: yellow; 
+    /* Define a cor do texto do título como amarelo. */
+}
+
+.Box p {
+    font-size: 20px; 
+    /* Define o tamanho da fonte do parágrafo na caixa. */
+
+    font-style: italic; 
+    /* Define o estilo da fonte como itálico. */
+
+    color: white; 
+    /* Define a cor do texto do parágrafo como branco. */
+}
+
+.foodbox {
+    padding: 10px 5px; 
+    /* Define o espaço interno da caixa de alimentos. */
+}
+
+.foodbox img {
+    width: 100%; 
+    /* Faz a imagem ocupar toda a largura da caixa de alimentos. */
+
+    height: 250px; 
+    /* Define a altura da imagem. */
+
+    object-fit: cover; 
+    /* Faz com que a imagem cubra a área designada, mantendo sua proporção. */
+
+    border-radius: 5px; 
+    /* Adiciona bordas arredondadas à imagem. */
+}
+
+.foodbox h1 {
+    font-size: 18px; 
+    /* Define o tamanho da fonte do título na caixa de alimentos. */
+
+    margin-top: 20px; 
+    /* Adiciona espaço acima do título. */
+
+    font-weight: bold; 
+    /* Define a espessura da fonte como negrito. */
+}
+
+.maisopcoes {
+    text-decoration: none; 
+    /* Remove o sublinhado do link. */
+
+    background-color: green; 
+    /* Define a cor de fundo do botão como verde. */
+
+    color: white; 
+    /* Define a cor do texto do botão como branco. */
+
+    padding: 10px 10px; 
+    /* Define o espaço interno do botão. */
+
+    border-radius: 5px; 
+    /* Adiciona bordas arredondadas ao botão. */
+
+    font-size: 18px; 
+    /* Define o tamanho da fonte do botão. */
+}
+
+@media screen and (max-width: 600px) {
+    .banner {
+        height: 700px; 
+        /* Reduz a altura do banner em dispositivos com largura máxima de 600px. */
+    }
+}
