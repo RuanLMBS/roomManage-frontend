@@ -22,22 +22,22 @@ Este é um sistema de alocação de espaços físicos para uso acadêmico, desen
 ## Instalação
 
 1. Clone o repositório:
-   \`\`\`bash
+ 
    git clone https://github.com/ucsal/desenvolvimento-front-end-grupo-9-1
-   \`\`\`
+ 
 
 2. Navegue até o diretório do projeto:
-   \`\`\`bash
+   \`\`\`
    cd desenvolvimento-front-end-grupo-9-1
    \`\`\`
 
 3. Instale as dependências do projeto:
-   \`\`\`bash
+   \`\`\`
    npm install
    \`\`\`
 
 4. Inicie o servidor de desenvolvimento:
-   \`\`\`bash
+   \`\`\`
    ng serve
    \`\`\`
 
@@ -59,15 +59,15 @@ Este é um sistema de alocação de espaços físicos para uso acadêmico, desen
 
 1. Faça um fork do projeto.
 2. Crie uma nova branch para a sua funcionalidade:
-   \`\`\`bash
+   \`\`\`
    git checkout -b nova-funcionalidade
    \`\`\`
 3. Faça as alterações necessárias e commit:
-   \`\`\`bash
+   \`\`\`
    git commit -m "Adiciona nova funcionalidade"
    \`\`\`
 4. Envie suas alterações:
-   \`\`\`bash
+   \`\`\`
    git push origin nova-funcionalidade
    \`\`\`
 5. Abra um Pull Request.
