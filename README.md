@@ -1,27 +1,77 @@
-# RoomManage
+# Sistema de Alocação de Espaços Acadêmicos
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.10.
+Este é um sistema de alocação de espaços físicos para uso acadêmico, desenvolvido em Angular. O objetivo é permitir que usuários visualizem e façam solicitações de uso de salas disponíveis, além de fornecer funcionalidades administrativas para gerenciar esses espaços.
 
-## Development server
+## Funcionalidades
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Visualização de Espaços**: Usuários podem visualizar salas disponíveis e solicitar o uso para períodos específicos.
+- **Gerenciamento de Espaços**: Administradores podem adicionar, editar, ativar/desativar e excluir espaços.
+- **Autenticação de Usuário**: O sistema utiliza autenticação JWT para controlar o acesso a diferentes funcionalidades, conforme o perfil do usuário.
+- **Gerenciamento de Usuários**: Administradores podem adicionar, editar, ativar/desativar usuários.
+- **Solicitações de Uso**: Usuários autenticados podem solicitar a reserva de espaços. Administradores podem aprovar ou rejeitar essas solicitações.
 
-## Code scaffolding
+## Tecnologias Utilizadas
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Angular 17.3.0**: Framework para a construção da interface do usuário e gerenciamento de rotas.
+- **Bootstrap 5.3.3**: Framework CSS para um design responsivo e moderno.
+- **jQuery 3.7.1**: Utilizado em conjunto com Bootstrap para funcionalidades interativas.
+- **JWT-Decode 4.0.0**: Biblioteca para decodificação de tokens JWT.
+- **RxJS 7.8.0**: Utilizado para manipulação de dados assíncronos e reativos.
+- **Zone.js 0.14.3**: Necessário para o controle de zonas de execução em Angular.
 
-## Build
+## Instalação
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Clone o repositório:
+   \`\`\`bash
+   git clone https://github.com/ucsal/desenvolvimento-front-end-grupo-9-1
+   \`\`\`
 
-## Running unit tests
+2. Navegue até o diretório do projeto:
+   \`\`\`bash
+   cd desenvolvimento-front-end-grupo-9-1
+   \`\`\`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+3. Instale as dependências do projeto:
+   \`\`\`bash
+   npm install
+   \`\`\`
 
-## Running end-to-end tests
+4. Inicie o servidor de desenvolvimento:
+   \`\`\`bash
+   ng serve
+   \`\`\`
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+5. Acesse o sistema em \`http://localhost:4200\`.
 
-## Further help
+## Estrutura do Projeto
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- \`src/app\`: Contém os componentes do Angular, serviços e a lógica de autenticação.
+- \`src/assets\`: Contém arquivos estáticos, como imagens e estilos.
+- \`src/environments\`: Arquivos de configuração para diferentes ambientes (desenvolvimento e produção).
+
+## Serviços
+
+- **Autenticação**: Implementa o login, registro e controle de acesso baseado em roles.
+- **Gerenciamento de Espaços**: Serviços para criar, editar e listar espaços disponíveis.
+- **Solicitações de Espaço**: Lida com o envio e gerenciamento de pedidos de uso de espaços.
+
+## Como Contribuir
+
+1. Faça um fork do projeto.
+2. Crie uma nova branch para a sua funcionalidade:
+   \`\`\`bash
+   git checkout -b nova-funcionalidade
+   \`\`\`
+3. Faça as alterações necessárias e commit:
+   \`\`\`bash
+   git commit -m "Adiciona nova funcionalidade"
+   \`\`\`
+4. Envie suas alterações:
+   \`\`\`bash
+   git push origin nova-funcionalidade
+   \`\`\`
+5. Abra um Pull Request.
+
+## Licença
+
+Este projeto está licenciado sob a [MIT License](LICENSE).
