@@ -1,0 +1,45 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Gerenciar Espaços</h2>  
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Localização</th>
+            <th scope="col">Capacidade</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Status</th>
+            <th scope="col">Disponibilidade</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let space of spaces">
+            <td>{{ space.name }}</td>
+            <td>{{ space.location }}</td>
+            <td>{{ space.capacity }}</td>
+            <td>{{ space.type }}</td>
+            <td><strong>{{ space.isActive ? 'Ativo' : 'Inativo' }}</strong></td>
+            <td><strong>{{ space.isAvailable ? 'Disponível' : 'Indisponível' }}</strong></td>
+            <td>
+              <button class="btn btn-warning me-2" (click)="toggleSpaceActivity(space)">
+                {{ space.isActive ? 'Desativar' : 'Ativar' }}
+              </button>
+              <button class="btn btn-secondary me-2" (click)="toggleSpaceAvailability(space)">
+                {{ space.isAvailable ? 'Indisponibilizar' : 'Disponibilizar' }}
+              </button>
+              <button class="btn btn-primary me-2" [routerLink]="['/edit-space/', space.id]">
+                Editar
+              </button>
+              <button (click)="deleteSpace(space)" class="btn btn-danger" >Deletar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <div *ngIf="spaces.length === 0" class="text-center">
+      <p>Nenhum espaço encontrado.</p>
+    </div>
+  </div>
+  

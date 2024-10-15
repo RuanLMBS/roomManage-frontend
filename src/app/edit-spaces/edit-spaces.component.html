@@ -1,0 +1,39 @@
+<div class="container mt-5">
+    <h2>Editar Espaço</h2>
+    <form (ngSubmit)="onSubmit()" #editSpaceForm="ngForm">
+      <div class="form-group">
+        <label for="name">Nome:</label>
+        <input type="text" class="form-control" id="name" [(ngModel)]="space.name" name="name" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="location">Localização:</label>
+        <input type="text" class="form-control" id="location" [(ngModel)]="space.location" name="location" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="capacity">Capacidade:</label>
+        <input type="number" class="form-control" id="capacity" [(ngModel)]="space.capacity" name="capacity" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="type">Tipo:</label>
+        <select class="form-control" id="type" [(ngModel)]="space.type" name="type" required>
+          <option value="SALA_AULA">Sala de Aula</option>
+          <option value="AUDITORIO">Auditório</option>
+          <option value="LABORATORIO">Laboratório</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="resources">Recursos:</label>
+        <input type="text" class="form-control" id="resources" [(ngModel)]="space.resources" name="resources"
+          placeholder="Recursos (separados por vírgula)">
+        <small class="form-text text-muted">Exemplo: projetor, lousa, computador</small>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+      <button type="button" class="btn btn-secondary" [routerLink]="['/managespaces']">Cancelar</button>
+    </form>
+  </div>
+  

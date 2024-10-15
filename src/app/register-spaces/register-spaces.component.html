@@ -1,0 +1,40 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Criar Espaço</h2>
+  
+    <form (ngSubmit)="onSubmit()" #spaceForm="ngForm">
+      <div class="mb-3">
+        <label for="location" class="form-label">Localização</label>
+        <input type="text" class="form-control" id="location" name="location" [(ngModel)]="spaceData.location" required>
+      </div>
+  
+      <div class="mb-3">
+        <label for="name" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="spaceData.name" required>
+      </div>
+  
+      <div class="mb-3">
+        <label for="capacity" class="form-label">Capacidade</label>
+        <input type="number" class="form-control" id="capacity" name="capacity" [(ngModel)]="spaceData.capacity" required min="0">
+      </div>
+  
+      <div class="mb-3">
+        <label for="type" class="form-label">Tipo</label>
+        <select class="form-select" id="type" name="type" [(ngModel)]="spaceData.type" required>
+          <option value="SALA_AULA">Sala de Aula</option>
+          <option value="AUDITORIO">Auditório</option>
+          <option value="LABORATORIO">Laboratório</option>
+        </select>
+      </div>
+  
+      <div class="mb-3">
+        <label for="resources" class="form-label">Recursos</label>
+        <input type="text" class="form-control" id="resources" name="resources" placeholder="Digite os recursos separados por vírgula" [(ngModel)]="resourcesInput">
+      </div>
+  
+      <button type="submit" class="btn btn-success" [disabled]="spaceForm.invalid">Criar Espaço</button>
+    </form>
+  
+    <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+  </div>
+  

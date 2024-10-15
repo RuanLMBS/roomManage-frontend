@@ -1,0 +1,39 @@
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Lista de Usuários</h1>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Nome de Usuário</th>
+          <th scope="col">Cargo</th>
+          <th scope="col">Status</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.username }}</td>
+          <td>{{ user.role }}</td>
+          <td><strong>{{ user.isActive ? 'Ativo' : 'Inativo' }}</strong></td>
+          <td>
+            <button class="btn btn-warning me-2" (click)="toggleUserStatus(user)">
+              {{ user.isActive ? 'Desativar' : 'Ativar' }}
+            </button>
+            <button [routerLink]="['/edit-user/', user.id]" class="btn btn-primary">
+              Editar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="users.length === 0" class="text-center">
+    <p>Nenhum usuário encontrado.</p>
+  </div>
+</div>

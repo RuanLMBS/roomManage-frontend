@@ -1,32 +1,28 @@
-<form style="width:70%">
+<form (ngSubmit)="onSubmit()" style="width:70%">
     <div class="row">
         <div class="mb-4 text-center">
             <h4>Bem vindo!</h4>
         </div>
     </div>
     <div class="row">
+        <label for="usuario">Usuário:</label>
         <div class="mb-4 text-center">
-            <input placeholder="Usuário" name="usuario" style="width:100%;border-radius:6px" required/>
+            <input placeholder="Usuário" name="usuario" [(ngModel)]="username" style="width:100%;border-radius:6px" required/>
         </div>
     </div>
     <div class="row">
+        <label for="senha">Senha:</label>
         <div class="mb-4 text-center">
-            <input type="password" placeholder="Senha" name="senha" style="width:100%;border-radius:6px"  required/>
+            
+            <input type="password" placeholder="Senha" name="senha" [(ngModel)]="password" style="width:100%;border-radius:6px"  required/>
         </div>
     </div>
     <div class="row">
         <div class="col text-start">
-            <button class="btn btn-block">
-                <a href="#">Cadastre-se!</a>
-            </button>
         </div>
         <div class="col text-end">
             <button class="btn btn-primary btn-block" type="submit" style="width:90%">Login</button>
         </div>
     </div>
 </form>
-<div class="row mt-4">
-    <button class="btn btn-block" type="submit" style="width:90%">
-        <a routerLink="/home" >Home</a>
-    </button>
-</div>
+

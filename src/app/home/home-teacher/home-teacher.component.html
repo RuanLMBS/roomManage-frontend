@@ -1,0 +1,30 @@
+
+<div class="container mt-5">
+    <h2>Minhas Solicitações</h2>
+
+<div *ngIf="!userRequests || userRequests.length === 0">
+  <div class="alert alert-warning" role="alert">
+    Nenhuma solicitação encontrada.
+  </div>
+</div>
+
+<ul class="list-group" *ngIf="userRequests && userRequests.length > 0">
+  <li class="list-group-item" *ngFor="let request of userRequests">
+    <strong>Espaço:</strong> {{ request.space.name }}<br>
+    <strong>Status:</strong> {{ request.status }}<br>
+    <strong>Data:</strong> {{ request.startDate | date: 'short' }} - {{ request.endDate | date: 'short'}}
+  </li>
+</ul>
+    <h2 class="mt-4">Salas Disponíveis</h2>
+    <div *ngFor="let space of spaces" class="card mb-3">
+        <div *ngIf="space.isAvailable && space.isActive">
+            <div class="card-body">
+            <h5 class="card-title">{{ space.name }}</h5>
+            <p class="card-text">Localização: {{ space.location }}</p>
+            <p class="card-text">Capacidade: {{ space.capacity }}</p>
+            <p class="card-text">Tipo: {{ space.type }}</p>
+            <button class="btn btn-primary" [routerLink]="['/request-space/', space.id]">Solicitar Uso</button>
+        </div>
+        </div>
+    </div>
+  </div>

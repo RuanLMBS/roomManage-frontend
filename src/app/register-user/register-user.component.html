@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row mt-4 text-center">
+        <h1>Cadastrar Usuário</h1>
+    </div>
+    <form (ngSubmit)="onSubmit()" class="mt-5 text-center row">
+        <div class="text-center mb-4">
+            <input placeholder="Usuário" [(ngModel)]="username" name="usuario" style="width:20%;border-radius:6px" required/>
+        </div>
+        <div class="text-center mb-4">
+            <input placeholder="Senha" [(ngModel)]="password" name="password" style="width:20%;border-radius:6px" required/>
+        </div>
+        <div class="text-center mb-4">
+            <input placeholder="Email" [(ngModel)]="email" name="email" type="mail" style="width:20%;border-radius:6px" required/>
+        </div>
+        <label>Cargo:</label><br>
+        <div class="text-center">
+            <select class="text-center" [(ngModel)]="role" style="width:20%" name="role">
+            <option value="MANAGER">Gestor</option>
+            <option value="TEACHER" selected>Professor</option>
+        </select></div>
+        
+        <div class="text-center mt-4">
+            <button class="btn btn-primary btn-block" type="submit" style="width:20%">Cadastrar</button>
+        </div>
+    </form>
+</div>

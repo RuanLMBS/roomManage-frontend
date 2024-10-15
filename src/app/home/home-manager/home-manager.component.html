@@ -1,0 +1,92 @@
+<div class="container mt-4">
+    <div class="row">
+      <div class="col text-center">
+        <h2 class="mb-4 text-center">Solicitações de Espaço</h2>
+      </div>
+      <div class="col text-end">
+        <button class="btn btn-primary" [routerLink]="['/pendingrequests/']">Solicitações Pendentes</button>
+      </div>
+    </div>
+
+    <div *ngIf="apprRequests.length > 0" class="mb-4">
+    <h3 class="mb-3 text-center">Espaços Reservados</h3>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th>#</th>
+            <th>Nome do Espaço</th>
+            <th>Solicitante</th>
+            <th>Data de Início</th>
+            <th>Data de Término</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let request of apprRequests; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ request.space.name }}</td>
+            <td>{{ request.requestedBy.username }}</td>
+            <td>{{ request.startDate | date:'short' }}</td>
+            <td>{{ request.endDate | date:'short' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Mensagem se não houver espaços reservados -->
+  <div *ngIf="apprRequests.length === 0" class="alert alert-info text-center">
+    Não há espaços reservados no momento.
+  </div>
+  
+    <div *ngIf="requests.length === 0" class="alert alert-info text-center">
+      Não há solicitações de espaço no momento.
+    </div>
+    
+    <div *ngIf="requests.length > 0">
+      <div class="table-responsive">
+        <table class="table table-striped table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th>#</th>
+              <th>Nome do Espaço</th>
+              <th>Solicitante</th>
+              <th>Data de Início</th>
+              <th>Data de Término</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let request of requests; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ request.request.space.name }}</td>
+              <td>{{ request.request.requestedBy.username }}</td>
+              <td>{{ request.request.startDate | date:'short' }}</td>
+              <td>{{ request.request.endDate | date:'short' }}</td>
+              <td>
+                <span [ngClass]="{'badge badge-warning': request.request.status === 'PENDING', 
+                                  'badge badge-success': request.request.status === 'ACCEPTED',
+                                  'badge badge-danger': request.request.status === 'REJECTED'}">
+                  {{ request.request.status }}
+                </span>
+              </td>
+              <td>
+                <button class="btn btn-success btn-sm mr-2" 
+                        [disabled]="request.status !== 'PENDENTE'"
+                        (click)="acceptRequest(request.id)">
+                  Aceitar
+                </button>
+                <button class="btn btn-danger btn-sm"
+                        [disabled]="request.status !== 'PENDENTE'"
+                        (click)="rejectRequest(request.id)">
+                  Rejeitar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
