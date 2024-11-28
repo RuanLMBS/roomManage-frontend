@@ -6,26 +6,26 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl='http://localhost:8080';
+  private apiUrl='http://localhost:8081/api/user-service';
   constructor(private http:HttpClient) { }
 
   getUsers():Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/users/admin/getAllUsers`);
+    return this.http.get<any>(`${this.apiUrl}/getAllUsers`);
   }
 
   getUser(userId: number):Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/users/admin/getUserById/${userId}`)
+    return this.http.get<any>(`${this.apiUrl}/getUserById/${userId}`)
   }
 
   updateUser(userId: number, userData: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/users/admin/updateUser/${userId}`, userData);
+    return this.http.put(`${this.apiUrl}/${userId}`, userData);
   }
 
   activateUser(userId: number, userData: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/users/admin/activate/${userId}`, userData);
+    return this.http.put(`${this.apiUrl}/activate/${userId}`, userData);
   }
 
   deactivateUser(userId: number, userData: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/users/admin/deactivate/${userId}`, userData);
+    return this.http.put(`${this.apiUrl}/deactivate/${userId}`, userData);
   }
 }

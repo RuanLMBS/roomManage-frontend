@@ -30,7 +30,7 @@ export class ManageSpacesComponent implements OnInit{
       }
     )
   }
-
+/*
   toggleSpaceAvailability(space:any) {
      // Cria um novo objeto com a nova disponibilidade
      const newAvailability = !space.isAvailable; // Inverte o estado atual
@@ -63,7 +63,7 @@ export class ManageSpacesComponent implements OnInit{
             console.error("Erro ao alterar Status:", error); // Log detalhado do erro
         }
     );
- }
+ }*/
 
   deleteSpace(space:any) {
     this.spaceService.deleteSpace(space.id).subscribe(

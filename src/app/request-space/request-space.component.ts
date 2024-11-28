@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { SpaceService } from '../services/space.service';
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { SpaceRequestService } from '../services/space-request.service';
 
 
 @Component({
@@ -25,29 +26,40 @@ export class RequestSpaceComponent implements OnInit{
 
   startDate: string = '';
   endDate: string = '';
+  username: any = '';
 
-  constructor(private spaceService:SpaceService, 
+  constructor(private spaceRequestService:SpaceRequestService, 
               private router:Router, 
               private route: ActivatedRoute,
-              private authService:AuthService) {}
+              private authService:AuthService,
+              private spaceService:SpaceService) {}
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if(id) {
-      this.spaceService.getSpaceById(+id).subscribe(data=>{
-        this.space=data;
-      })
-    }
+      const id = this.route.snapshot.paramMap.get('id');
+        this.spaceService.getSpaces().subscribe({
+          next: (data)=> {
+            data.forEach((e: any) => {
+             if(e.id==id) {
+                this.space = e;
+              }
+            });
+          }, 
+          error: (error) => {
+            console.error('Erro ao obter Espaços', error)
+          }
+      
+  })
+        this.username = this.authService.getUserName();
+      
   }
   onSubmit(): void {
     const spaceRequestDTO = {
-      space: this.space,
+      userName: this.username,
+      spaceName: this.space.name,
       startDate: this.startDate,
       endDate: this.endDate
     };
- 
-
     const userToken:any = this.authService.getToken();
-    this.spaceService.requestSpace(spaceRequestDTO,userToken).subscribe(
+    this.spaceRequestService.requestSpace(spaceRequestDTO,userToken).subscribe(
       () => {
         alert('Solicitação enviada com sucesso!');
         this.router.navigate(['/home']); // Redireciona para uma página de sucesso, ajuste conforme necessário
@@ -56,6 +68,6 @@ export class RequestSpaceComponent implements OnInit{
         console.error('Erro ao enviar solicitação:', error);
         alert('Não foi possível enviar a solicitação.');
       }
-    );
+    ); 
   }
 }

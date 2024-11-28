@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-logar',
   standalone: true,
-  imports: [RouterOutlet,RouterLink,RouterLinkActive,FormsModule],
+  imports: [FormsModule],
   templateUrl: './logar.component.html',
   styleUrl: './logar.component.css'
 })

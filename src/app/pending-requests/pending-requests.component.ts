@@ -5,6 +5,7 @@ import { SpaceService } from '../services/space.service';
 import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { SpaceRequestService } from '../services/space-request.service';
 
 @Component({
   selector: 'app-pending-requests',
@@ -16,15 +17,19 @@ import { Router } from '@angular/router';
 export class PendingRequestsComponent implements OnInit{
   pendingRequests:any[]=[];
 
-  constructor(private spaceService:SpaceService, private authService:AuthService, private router:Router) {}
+  constructor(private spaceRequestService:SpaceRequestService, private authService:AuthService, private router:Router) {}
   ngOnInit(): void {
     this.loadPending();
   }
 
   loadPending() {
-    this.spaceService.getRequests().subscribe(
+    this.spaceRequestService.getRequests().subscribe(
       response => {
-        this.pendingRequests = response;
+        response.forEach((e:any) => {
+          if(e.status === 'PENDENTE') {
+            this.pendingRequests.push(e);
+          } 
+        });
       },
       error => {
         console.error(error);
@@ -34,7 +39,7 @@ export class PendingRequestsComponent implements OnInit{
 
   acceptRequests(requestId:any) {
     const userToken = this.authService.getToken();
-    this.spaceService.acceptRequest(requestId, userToken).subscribe(
+    this.spaceRequestService.acceptRequest(requestId, userToken).subscribe(
       (response)=>{
         alert("Solicitação aceita com sucesso!");
         console.log("Solicitação aprovada", response);
@@ -50,7 +55,7 @@ export class PendingRequestsComponent implements OnInit{
 
   rejectRequests(requestId:any) {
     const userToken = this.authService.getToken();
-    this.spaceService.rejectRequest(requestId, userToken).subscribe(
+    this.spaceRequestService.rejectRequest(requestId, userToken).subscribe(
       (response)=>{
         alert("Solicitação recusada com sucesso!")
         console.log("Solicitação recusada", response);

@@ -8,23 +8,25 @@ import { jwtDecode } from 'jwt-decode';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/auth/login';
+  private apiUrl = 'http://localhost:8081/api/user-service/login';
+
+  // http://
   constructor(private http:HttpClient) { }
 
   login(username: string, password: string):Observable<any> {
+
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Accept': '*/*'
+      'Accept': '*/*',
     });
     const body = { username, password };
     return this.http.post(this.apiUrl, body, {headers}).pipe(
       tap((response:any)=>{
         this.saveToken(response.token)
         const decodedToken: any = jwtDecode(response.token);
-        console.log(`Decoded token: ${decodedToken.getUserRole}`)
         localStorage.setItem('role', decodedToken.role); 
         localStorage.setItem('sub', decodedToken.sub);
-        localStorage.setItem('active', decodedToken.active)
+     //   localStorage.setItem('active', decodedToken.active)
       })
     );
   } 

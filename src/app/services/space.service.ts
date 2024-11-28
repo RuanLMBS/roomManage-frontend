@@ -7,67 +7,38 @@ import { HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class SpaceService {
-  private apiUrl = 'http://localhost:8080'
+  private apiUrl = 'http://localhost:9000/api/space-service'
   constructor(private http:HttpClient) { }
 
   createSpace(spaceData: any) {
-    return this.http.post(`${this.apiUrl}/spaces/admin/create`, spaceData)
+    return this.http.post(`${this.apiUrl}/createSpace`, spaceData)
   }
 
   getSpaces(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/spaces/all`)
+    return this.http.get<any>(`${this.apiUrl}/getAllSpaces`)
   }
 
-  setAvaibility(spaceId:number, spaceData:any):Observable<any> {
+  /*setAvaibility(spaceId:number, spaceData:any):Observable<any> {
     return this.http.put(`${this.apiUrl}/spaces/admin/available/${spaceId}`,spaceData);  
   }
 
   setActivity(spaceId:number, spaceData:any):Observable<any>{
     return this.http.put(`${this.apiUrl}/spaces/admin/active/${spaceId}`,spaceData);  
-  }
+  }*/
 
   deleteSpace(spaceId: number):Observable<any> {
-    return this.http.delete(`${this.apiUrl}/spaces/admin/delete/${spaceId}`)
+    return this.http.delete(`${this.apiUrl}/deleteSpace/${spaceId}`)
   }
 
   getSpaceById(spaceId: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/spaces/admin/getSpaceById/${spaceId}`)
+    return this.http.get(`${this.apiUrl}/existsById/${spaceId}`)
   }
   
   updateSpace(spaceId:number, spaceData: any) {
-    return this.http.put(`${this.apiUrl}/spaces/admin/update/${spaceId}`,spaceData)
+    return this.http.put(`${this.apiUrl}/updateSpace/${spaceId}`,spaceData)
   }
 
-  requestSpace(spaceRequestDTO: any, token: any): Observable<any> {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
-  });
-    return this.http.post(`${this.apiUrl}/spacerequests/teacher/createSpaceRequest`, spaceRequestDTO,{headers});
-  }
-
-  getRequests(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/spacerequests/manager/getAllSpaceRequests`)
-  }
-
-  getFinishedRequests(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/spacerequests/manager/getAllAprovaFlows`)
-  }
-
-  acceptRequest(requestId:number, token:any) {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
-  });
-    return this.http.post(`${this.apiUrl}/spacerequests/manager/approve/${requestId}`, {},{headers})  }
-
-  rejectRequest(requestId:number, token:any) {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
-  });
-    return this.http.post(`${this.apiUrl}/spacerequests/manager/reject/${requestId}`, {},{headers})
-  }
+ 
 
   
 }

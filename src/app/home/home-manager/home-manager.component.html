@@ -24,8 +24,8 @@
         <tbody>
           <tr *ngFor="let request of apprRequests; let i = index">
             <td>{{ i + 1 }}</td>
-            <td>{{ request.space.name }}</td>
-            <td>{{ request.requestedBy.username }}</td>
+            <td>{{ request.spaceName }}</td>
+            <td>{{ request.userName }}</td>
             <td>{{ request.startDate | date:'short' }}</td>
             <td>{{ request.endDate | date:'short' }}</td>
           </tr>
@@ -60,26 +60,26 @@
           <tbody>
             <tr *ngFor="let request of requests; let i = index">
               <td>{{ i + 1 }}</td>
-              <td>{{ request.request.space.name }}</td>
-              <td>{{ request.request.requestedBy.username }}</td>
-              <td>{{ request.request.startDate | date:'short' }}</td>
-              <td>{{ request.request.endDate | date:'short' }}</td>
+              <td>{{ request.spaceName }}</td>
+              <td>{{ request.userName }}</td>
+              <td>{{ request.startDate | date:'short' }}</td>
+              <td>{{ request.endDate | date:'short' }}</td>
               <td>
-                <span [ngClass]="{'badge badge-warning': request.request.status === 'PENDING', 
-                                  'badge badge-success': request.request.status === 'ACCEPTED',
-                                  'badge badge-danger': request.request.status === 'REJECTED'}">
-                  {{ request.request.status }}
+                <span [ngClass]="{'badge badge-warning': request.status === 'PENDING', 
+                                  'badge badge-success': request.status === 'ACCEPTED',
+                                  'badge badge-danger': request.status === 'REJECTED'}">
+                  {{ request.status }}
                 </span>
               </td>
               <td>
                 <button class="btn btn-success btn-sm mr-2" 
                         [disabled]="request.status !== 'PENDENTE'"
-                        (click)="acceptRequest(request.id)">
+                        > <!--(click)="acceptRequest(request.id)" -->
                   Aceitar
                 </button>
                 <button class="btn btn-danger btn-sm"
                         [disabled]="request.status !== 'PENDENTE'"
-                        (click)="rejectRequest(request.id)">
+                        > <!-- (click)="rejectRequest(request.id)" -->
                   Rejeitar
                 </button>
               </td>

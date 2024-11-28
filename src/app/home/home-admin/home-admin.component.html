@@ -28,8 +28,8 @@
         <tbody>
           <tr *ngFor="let request of apprRequests; let i = index">
             <td>{{ i + 1 }}</td>
-            <td>{{ request.space.name }}</td>
-            <td>{{ request.requestedBy.username }}</td>
+            <td>{{ request.spaceName }}</td>
+            <td>{{ request.userName }}</td>
             <td>{{ request.startDate | date:'short' }}</td>
             <td>{{ request.endDate | date:'short' }}</td>
           </tr>

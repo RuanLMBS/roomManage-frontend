@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { SpaceService } from '../../services/space.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { SpaceRequestService } from '../../services/space-request.service';
 
 @Component({
   selector: 'app-home-admin',
@@ -15,18 +16,24 @@ import { FormsModule } from '@angular/forms';
 export class HomeAdminComponent implements OnInit{
   apprRequests:any[] = []
 
-  constructor(private authService: AuthService, private spaceService:SpaceService) {}
+  constructor(private authService: AuthService, private spaceService:SpaceService, private spaceRequestService:SpaceRequestService) {}
  
   ngOnInit(): void {
     this.loadApprovedRequests();
   }
+
+  
   loadApprovedRequests() {
-    this.spaceService.getRequests().subscribe(
-        data=> {
-          this.apprRequests = data.filter((request:any) => request.status === 'APROVADO');
+    this.spaceRequestService.getRequests().subscribe(
+      response => {
+        response.forEach((e:any) => {
+          if(e.status === 'APROVADO') {
+            this.apprRequests.push(e);
+          } 
+        });
       },
       error => {
-        console.log("Erro ao buscar solicitações do usuário!",error)
+        console.error(error);
       }
     )
   }

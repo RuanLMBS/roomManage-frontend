@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { SpaceRequestService } from '../../services/space-request.service';
 
 @Component({
   selector: 'app-home-teacher',
@@ -21,19 +22,15 @@ export class HomeTeacherComponent implements OnInit{
   spaceRequest: any = {
     space: {
       id: 0,
-      name: '',
-      location: '',
-      capacity: 0,
-      type: '',
-      isAvailable: true,
-      isActive: true,
-      resources: []
-    },
-    startDate: '',
-    endDate: ''
+      requestDate: '',
+      userName: '',
+      startDate: 0,
+      endDate: '',
+      status: "",
+    }
   };
 
-  constructor(private spaceService:SpaceService, private authService:AuthService){}
+  constructor(private spaceService:SpaceService, private authService:AuthService, private spaceRequestService:SpaceRequestService){}
 
   ngOnInit(): void {
     this.loadSpaces();
@@ -53,9 +50,15 @@ export class HomeTeacherComponent implements OnInit{
   }
 
   loadRequests() {
-    this.spaceService.getRequests().subscribe(
+    this.spaceRequestService.getRequests().subscribe(
         data=> {
-          this.userRequests = data.filter((request:any) => request.requestedBy.username === this.userName);
+          data.forEach((e:any) => {
+            if(e.userName == this.userName) {
+              this.userRequests.push(e);
+            }
+          });
+          console.log(this.userRequests);
+          //this.userRequests = data.filter((request:any) => request.requestedBy.username === this.userName);
       },
       error => {
         console.log("Erro ao buscar solicitações do usuário!",error)

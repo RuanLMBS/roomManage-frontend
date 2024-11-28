@@ -11,7 +11,6 @@
         <tr>
           <th scope="col">Nome de Usuário</th>
           <th scope="col">Cargo</th>
-          <th scope="col">Status</th>
           <th scope="col">Ações</th>
         </tr>
       </thead>
@@ -19,11 +18,7 @@
         <tr *ngFor="let user of users">
           <td>{{ user.username }}</td>
           <td>{{ user.role }}</td>
-          <td><strong>{{ user.isActive ? 'Ativo' : 'Inativo' }}</strong></td>
           <td>
-            <button class="btn btn-warning me-2" (click)="toggleUserStatus(user)">
-              {{ user.isActive ? 'Desativar' : 'Ativar' }}
-            </button>
             <button [routerLink]="['/edit-user/', user.id]" class="btn btn-primary">
               Editar
             </button>

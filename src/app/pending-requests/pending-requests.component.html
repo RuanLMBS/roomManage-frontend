@@ -4,7 +4,7 @@
             <h2 class="mb-4">Solicitações Pendentes</h2>
         </div>
         <div class="col text-end">
-            <!-- Botão para outras ações, se necessário -->
+             Botão para outras ações, se necessário 
         </div>
     </div>
 
@@ -28,8 +28,8 @@
                 <ng-container *ngFor="let request of pendingRequests; let i = index">
                     <tr *ngIf="request.status === 'PENDENTE'">
                         <td>{{ i + 1 }}</td>
-                        <td>{{ request.space.name }}</td>
-                        <td>{{ request.requestedBy.username }}</td>
+                        <td>{{ request.spaceName }}</td>
+                        <td>{{ request.userName }}</td>
                         <td>{{ request.requestDate | date:'short' }}</td>
                         <td>
                             <span class="badge bg-warning">Pendente</span>

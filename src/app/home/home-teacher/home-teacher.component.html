@@ -10,7 +10,7 @@
 
 <ul class="list-group" *ngIf="userRequests && userRequests.length > 0">
   <li class="list-group-item" *ngFor="let request of userRequests">
-    <strong>Espaço:</strong> {{ request.space.name }}<br>
+    <strong>Espaço:</strong> {{ request.spaceName }}<br>
     <strong>Status:</strong> {{ request.status }}<br>
     <strong>Data:</strong> {{ request.startDate | date: 'short' }} - {{ request.endDate | date: 'short'}}
   </li>

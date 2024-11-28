@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { RouterLink } from '@angular/router';
+import { SpaceRequestService } from '../../services/space-request.service';
 
 @Component({
   selector: 'app-home-manager',
@@ -16,16 +17,19 @@ export class HomeManagerComponent implements OnInit{
   requests:any[] = [];
   apprRequests:any[] = [];
 
-  constructor(private spaceService:SpaceService, private authService:AuthService) {}
+  constructor(private spaceService:SpaceService, private authService:AuthService, private spaceRequestService:SpaceRequestService) {}
   ngOnInit(): void {
     this.loadRequests();
     this.loadApprovedRequests();
   }
-
+  
   loadRequests() {
-    this.spaceService.getFinishedRequests().subscribe(
+    this.spaceRequestService.getRequests().subscribe(
       response => {
-        this.requests = response;
+        response.forEach((e:any) => {
+          this.requests.push(e);
+        });
+        console.log(response)
       },
       error => {
         console.error(error);
@@ -33,6 +37,21 @@ export class HomeManagerComponent implements OnInit{
     )
   }
 
+  loadApprovedRequests() {
+    this.spaceRequestService.getRequests().subscribe(
+      response => {
+        response.forEach((e:any) => {
+          if(e.status === 'APROVADO') {
+            this.apprRequests.push(e);
+          } 
+        });
+      },
+      error => {
+        console.error(error);
+      }
+    )
+  }
+/*
   loadApprovedRequests() {
     this.spaceService.getRequests().subscribe(
         data=> {
@@ -67,7 +86,7 @@ export class HomeManagerComponent implements OnInit{
         console.log("Erro ao recusar solicitação: ", error)
       }
     )
-  }
+  } */
 
 
 
